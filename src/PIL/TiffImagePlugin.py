@@ -1296,6 +1296,8 @@ class TiffImageFile(ImageFile.ImageFile):
                 self.fp.seek(0)
             # 4 bytes, otherwise the trace might error out
             n, err = decoder.decode(b"fpfp")
+            # fp should be closed after call to decode
+            fp = None
         else:
             # we have something else.
             logger.debug("don't have fileno or getvalue. just reading")
